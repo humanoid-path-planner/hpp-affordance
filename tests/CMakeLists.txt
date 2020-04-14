@@ -28,7 +28,5 @@ SET(${PROJECT_NAME}_TESTS
 
 FOREACH(test ${${PROJECT_NAME}_TESTS})
   ADD_UNIT_TEST(${test} "test-${test}")
-  PKG_CONFIG_USE_DEPENDENCY(${test} hpp-fcl)
-  PKG_CONFIG_USE_DEPENDENCY(${test} eigen3)
   target_link_libraries(${test} ${Boost_LIBRARIES} ${PROJECT_NAME})
 ENDFOREACH(test)
