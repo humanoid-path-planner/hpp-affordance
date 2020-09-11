@@ -15,9 +15,6 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with hpp-affordance  If not, see <http://www.gnu.org/licenses/>.
 
-# Make Boost.Test generates the main function in test cases.
-#ADD_DEFINITIONS(-DBOOST_TEST_DYN_LINK -DBOOST_TEST_MAIN)
-
 SET(${PROJECT_NAME}_TESTS
   operations
   one-triangle1
@@ -28,5 +25,5 @@ SET(${PROJECT_NAME}_TESTS
 
 FOREACH(test ${${PROJECT_NAME}_TESTS})
   ADD_UNIT_TEST(${test} "test-${test}")
-  target_link_libraries(${test} ${Boost_LIBRARIES} ${PROJECT_NAME})
+  target_link_libraries(${test} ${PROJECT_NAME})
 ENDFOREACH(test)
