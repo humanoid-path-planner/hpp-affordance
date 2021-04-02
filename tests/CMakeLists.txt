@@ -24,6 +24,6 @@ SET(${PROJECT_NAME}_TESTS
   )
 
 FOREACH(test ${${PROJECT_NAME}_TESTS})
-  ADD_UNIT_TEST(${test} "test-${test}")
+  ADD_UNIT_TEST(${test} "test-${test}.cc")
   target_link_libraries(${test} ${PROJECT_NAME})
 ENDFOREACH(test)
