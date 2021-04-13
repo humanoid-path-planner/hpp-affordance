@@ -1,0 +1,13 @@
+<?xml version='1.0'?>
+<package format='2'>
+    <name>hpp-affordance</name>
+    <version>4.10.0</version>
+    <description>Extract Whole-Body Affordances for Multi-Contact Planning</description>
+
+    <maintainer email='guilhem.saurel@laas.fr'>Guilhem Saurel</maintainer>
+    <license>BSD</license>
+
+    <author>Anna Seppala</author>
+
+    <buildtool_depend>catkin</buildtool_depend>
+</package>

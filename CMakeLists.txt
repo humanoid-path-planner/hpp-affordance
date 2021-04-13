@@ -54,3 +54,5 @@ ADD_SUBDIRECTORY(tests)
 
 CONFIG_FILES(include/hpp/affordance/doc.hh)
 PKG_CONFIG_APPEND_LIBS("hpp-affordance")
+
+INSTALL(FILES package.xml DESTINATION share/${PROJECT_NAME})
