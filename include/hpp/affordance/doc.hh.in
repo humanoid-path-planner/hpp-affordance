@@ -27,7 +27,7 @@
 /// surfaces may be applied for leaning, whereas smaller horizontal surface
 /// areas (e.g. stairs) allow for a robot to step on them.
 ///
-/// hpp-affordance utilises triangulated meshes created from objects of type 
+/// hpp-affordance utilises triangulated meshes created from objects of type
 /// fcl::collisionObject as implemented in \htmlonly<a class="el" href="@HPP_FCL_DOXYGENDOCDIR@/index.html">hpp-fcl</a>\endhtmlonly. Please refer to its package documentation for details.
 ///
 /// There are some helper classes within this package that help in the
@@ -35,12 +35,12 @@
 /// \li hpp::affordance::Affordance
 /// \li hpp::affordance::SemanticsData
 /// \li hpp::affordance::OperationBase
-/// 
+///
 /// However, the main functionality is provided by free functions, such as
 /// \li hpp::affordance::affordanceAnalysis
-/// 
-/// 
-/// 
-/// 
-/// 
+///
+///
+///
+///
+///
 ///
