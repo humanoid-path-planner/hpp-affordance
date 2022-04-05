@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE(one_triangle1) {
   std::vector<fcl::Triangle> triangles;
 
   typedef fcl::BVHModel<fcl::OBBRSS> Model;
-  boost::shared_ptr<Model> model(new Model());
+  fcl::shared_ptr<Model> model(new Model());
 
   fcl::Vec3f vert1(0, 0, 0);
   fcl::Vec3f vert2(1, 0, 0);

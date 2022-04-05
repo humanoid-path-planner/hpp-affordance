@@ -22,7 +22,6 @@
 #include <hpp/fcl/BVH/BVH_model.h>
 #include <hpp/fcl/data_types.h>
 
-#include <boost/smart_ptr.hpp>
 #include <hpp/fcl/fwd.hh>
 #include <map>
 #include <vector>
@@ -38,18 +37,18 @@ class LeanOperation;
 class Support45Operation;
 
 typedef fcl::BVHModel<fcl::OBBRSS> BVHModelOB;
-typedef boost::shared_ptr<BVHModelOB> BVHModelOB_Ptr_t;
-typedef boost::shared_ptr<const BVHModelOB> BVHModelOBConst_Ptr_t;
-typedef boost::shared_ptr<SupportOperation> SupportOperationPtr_t;
-typedef boost::shared_ptr<LeanOperation> LeanOperationPtr_t;
-typedef boost::shared_ptr<Support45Operation> Support45OperationPtr_t;
-typedef boost::shared_ptr<fcl::CollisionObject> CollisionObjectPtr_t;
+typedef fcl::shared_ptr<BVHModelOB> BVHModelOB_Ptr_t;
+typedef fcl::shared_ptr<const BVHModelOB> BVHModelOBConst_Ptr_t;
+typedef fcl::shared_ptr<SupportOperation> SupportOperationPtr_t;
+typedef fcl::shared_ptr<LeanOperation> LeanOperationPtr_t;
+typedef fcl::shared_ptr<Support45Operation> Support45OperationPtr_t;
+typedef fcl::shared_ptr<fcl::CollisionObject> CollisionObjectPtr_t;
 typedef std::vector<CollisionObjectPtr_t> CollisionObjects_t;
-typedef boost::shared_ptr<OperationBase> OperationBasePtr_t;
+typedef fcl::shared_ptr<OperationBase> OperationBasePtr_t;
 typedef std::vector<OperationBasePtr_t> OperationBases_t;
-typedef boost::shared_ptr<SemanticsData> SemanticsDataPtr_t;
-typedef boost::shared_ptr<Affordance> AffordancePtr_t;
-typedef boost::shared_ptr<AffordanceExtraction> AffordanceExtractionPtr_t;
+typedef fcl::shared_ptr<SemanticsData> SemanticsDataPtr_t;
+typedef fcl::shared_ptr<Affordance> AffordancePtr_t;
+typedef fcl::shared_ptr<AffordanceExtraction> AffordanceExtractionPtr_t;
 typedef fcl::CollisionObject FclCollisionObject;
 typedef fcl::CollisionObject* FclCollisionObjectPtr_t;
 typedef const fcl::CollisionObject* FclConstCollisionObjectPtr_t;
