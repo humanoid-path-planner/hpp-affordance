@@ -30,7 +30,11 @@ namespace affordance {
 BVHModelOBConst_Ptr_t GetModel(FclConstCollisionObjectPtr_t object) {
   assert(object->collisionGeometry()->getNodeType() == fcl::BV_OBBRSS);
   const BVHModelOBConst_Ptr_t model =
+#if HPP_FCL_VERSION_AT_LEAST(2, 0, 0)
+      std::static_pointer_cast<const BVHModelOB>(object->collisionGeometry());
+#else
       boost::static_pointer_cast<const BVHModelOB>(object->collisionGeometry());
+#endif
   assert(model->getModelType() == fcl::BVH_MODEL_TRIANGLES);
   return model;
 }
