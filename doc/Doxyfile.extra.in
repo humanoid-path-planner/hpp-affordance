@@ -6,4 +6,3 @@ INPUT		= @CMAKE_SOURCE_DIR@/include \
 
 FILE_PATTERNS   = *.cc *.cpp \
 				          *.hh *.hxx \
-

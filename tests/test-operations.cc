@@ -1,5 +1,5 @@
 // Copyright (C) 2016 LAAS-CNRS
-// Author: Anna Seppala 
+// Author: Anna Seppala
 //
 // This file is part of the hpp-affordance.
 //
@@ -16,46 +16,45 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with hpp-affordance.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <hpp/affordance/operations.hh>
 #include <hpp/affordance/fwd.hh>
+#include <hpp/affordance/operations.hh>
 
-#define BOOST_TEST_MODULE test-operations
+#define BOOST_TEST_MODULE test - operations
 #include <boost/test/included/unit_test.hpp>
 
 using namespace hpp;
 const double epsilon = 10e-6;
 
-bool compDouble(const double a, const double b)
-{
-	return a-b < epsilon;
+bool compDouble(const double a, const double b) { return a - b < epsilon; }
+
+bool compVec(const fcl::Vec3f& a, const fcl::Vec3f& b) {
+  return (a - b).norm() < epsilon;
 }
 
-bool compVec(const fcl::Vec3f& a, const fcl::Vec3f& b)
-{
-	return (a-b).norm() < epsilon;
-}
+BOOST_AUTO_TEST_SUITE(test_affordance)
 
+BOOST_AUTO_TEST_CASE(operations) {
+  hpp::affordance::SupportOperationPtr_t support(
+      new hpp::affordance::SupportOperation(0.3));
+  hpp::affordance::LeanOperationPtr_t lean(
+      new hpp::affordance::LeanOperation(0.1));
 
-BOOST_AUTO_TEST_SUITE (test_affordance)
-
-BOOST_AUTO_TEST_CASE (operations)
-{
-	hpp::affordance::SupportOperationPtr_t support (new hpp::affordance::SupportOperation(0.3));
-  hpp::affordance::LeanOperationPtr_t lean (new hpp::affordance::LeanOperation(0.1));
-
-  std::vector <hpp::affordance::OperationBasePtr_t> operations;
+  std::vector<hpp::affordance::OperationBasePtr_t> operations;
   operations.push_back(support);
   operations.push_back(lean);
 
   const fcl::Vec3f normal1(0, 0, 1);
 
-	BOOST_CHECK_MESSAGE (compVec(support->zWorld_,normal1),
-		"default value for zWorld should be " << normal1 << " but is " << support->zWorld_);
+  BOOST_CHECK_MESSAGE(compVec(support->zWorld_, normal1),
+                      "default value for zWorld should be "
+                          << normal1 << " but is " << support->zWorld_);
 
-	BOOST_CHECK_MESSAGE (compDouble(lean->margin_,0.1),
-		"margin should match the one given when creating operation");
+  BOOST_CHECK_MESSAGE(
+      compDouble(lean->margin_, 0.1),
+      "margin should match the one given when creating operation");
 
-	BOOST_CHECK_MESSAGE (operations.size () == 2, 
-		"operation vector should have size 2 after adding support and lean");
+  BOOST_CHECK_MESSAGE(
+      operations.size() == 2,
+      "operation vector should have size 2 after adding support and lean");
 }
-BOOST_AUTO_TEST_SUITE_END ()
+BOOST_AUTO_TEST_SUITE_END()
