@@ -1,5 +1,20 @@
-[tool.black]
-exclude = "cmake"
+[build-system]
+build-backend = "cmeel.build"
+requires = [
+  "cmeel-boost ~= 1.83.0",
+  "cmeel[build]",
+  "hpp-fcl[build]"
+]
+
+[project]
+dependencies = [
+  "cmeel-boost ~= 1.83.0",
+  "hpp-fcl"
+]
+description = "Implementation to Extract Whole-Body Affordances for Mutli-Contact Planning."
+license = "BSD-2-Clause"
+name = "hpp-affordance"
+version = "5.0.0"
 
 [tool.isort]
 profile = "black"
