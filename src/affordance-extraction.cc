@@ -99,12 +99,12 @@ SemanticsDataPtr_t affordanceAnalysis(FclConstCollisionObjectPtr_t colObj,
 
   for (int i = 0; i < model->num_tris; ++i) {
     TrianglePoints tri;
-    fcl::Triangle fcltri = (*model->tri_indices)[i];
-    tri.p1 = colObj->getRotation() * (*model->vertices)[fcltri[0]] +
+    fcl::Triangle fcltri = model->tri_indices[i];
+    tri.p1 = colObj->getRotation() * model->vertices[fcltri[0]] +
              colObj->getTranslation();
-    tri.p2 = colObj->getRotation() * (*model->vertices)[fcltri[1]] +
+    tri.p2 = colObj->getRotation() * model->vertices[fcltri[1]] +
              colObj->getTranslation();
-    tri.p3 = colObj->getRotation() * (*model->vertices)[fcltri[2]] +
+    tri.p3 = colObj->getRotation() * model->vertices[fcltri[2]] +
              colObj->getTranslation();
 
     triangles.push_back(Triangle(tri));
@@ -225,14 +225,14 @@ void addTriangles(hpp::affordance::AffordancePtr_t affPtr,
   // give triangles of new object new vertex indices (start from 0
   // and go up to 3*nbTris - 1 [all tris have 3 unique indices])
   std::vector<std::size_t> triPoints;
-  const fcl::Triangle& refTri = (*model->tri_indices)[affPtr->indices_[triIdx]];
+  const fcl::Triangle& refTri = model->tri_indices[affPtr->indices_[triIdx]];
   //     triangles.push_back (refTri);
   for (unsigned int vertIdx = 0; vertIdx < 3; vertIdx++) {
     std::vector<std::size_t>::iterator it =
         std::find(triIndices.begin(), triIndices.end(), refTri[vertIdx]);
     if (it == triIndices.end()) {
       triIndices.push_back(refTri[vertIdx]);
-      vertices.push_back((*model->vertices)[refTri[vertIdx]]);
+      vertices.push_back(model->vertices[refTri[vertIdx]]);
       triPoints.push_back(std::size_t(vertices.size() - 1));
     } else {
       triPoints.push_back(it - triIndices.begin());
