@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 <package format='2'>
     <name>hpp-affordance</name>
-    <version>5.1.0</version>
+    <version>5.2.0</version>
     <description>Extract Whole-Body Affordances for Multi-Contact Planning</description>
 
     <maintainer email='guilhem.saurel@laas.fr'>Guilhem Saurel</maintainer>
