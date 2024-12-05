@@ -16,8 +16,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with hpp-affordance.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <hpp/fcl/BVH/BVH_model.h>
-#include <hpp/fcl/shape/geometric_shape_to_BVH_model.h>
+#include <coal/BVH/BVH_model.h>
+#include <coal/shape/geometric_shape_to_BVH_model.h>
 
 #include <hpp/affordance/affordance-extraction.hh>
 #include <hpp/affordance/operations.hh>
@@ -38,33 +38,33 @@ BOOST_AUTO_TEST_CASE(one_triangle1) {
   operations.push_back(support);
   operations.push_back(lean);
 
-  std::vector<fcl::Vec3f> vertices;
-  std::vector<fcl::Triangle> triangles;
+  std::vector<coal::Vec3f> vertices;
+  std::vector<coal::Triangle> triangles;
 
-  typedef fcl::BVHModel<fcl::OBBRSS> Model;
-  fcl::shared_ptr<Model> model(new Model());
+  typedef coal::BVHModel<coal::OBBRSS> Model;
+  coal::shared_ptr<Model> model(new Model());
 
-  fcl::Vec3f vert1(0, 0, 0);
-  fcl::Vec3f vert2(1, 0, 0);
-  fcl::Vec3f vert3(0, 1, 0);
+  coal::Vec3f vert1(0, 0, 0);
+  coal::Vec3f vert2(1, 0, 0);
+  coal::Vec3f vert3(0, 1, 0);
   vertices.push_back(vert1);
   vertices.push_back(vert2);
   vertices.push_back(vert3);
 
-  fcl::Triangle tri(0, 1, 2);
+  coal::Triangle tri(0, 1, 2);
   triangles.push_back(tri);
 
-  fcl::Matrix3f R;
+  coal::Matrix3f R;
   R.setIdentity();
-  fcl::Vec3f T(0, 0, 0);
+  coal::Vec3f T(0, 0, 0);
 
-  fcl::Transform3f pose(R, T);
+  coal::Transform3f pose(R, T);
 
   model->beginModel();
   model->addSubModel(vertices, triangles);
   model->endModel();
 
-  fcl::CollisionObject* obj(new fcl::CollisionObject(model, pose));
+  coal::CollisionObject* obj(new coal::CollisionObject(model, pose));
 
   hpp::affordance::SemanticsDataPtr_t h =
       hpp::affordance::affordanceAnalysis(obj, operations);

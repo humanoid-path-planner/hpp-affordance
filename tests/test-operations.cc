@@ -27,7 +27,7 @@ const double epsilon = 10e-6;
 
 bool compDouble(const double a, const double b) { return a - b < epsilon; }
 
-bool compVec(const fcl::Vec3f& a, const fcl::Vec3f& b) {
+bool compVec(const coal::Vec3f& a, const coal::Vec3f& b) {
   return (a - b).norm() < epsilon;
 }
 
@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE(operations) {
   operations.push_back(support);
   operations.push_back(lean);
 
-  const fcl::Vec3f normal1(0, 0, 1);
+  const coal::Vec3f normal1(0, 0, 1);
 
   BOOST_CHECK_MESSAGE(compVec(support->zWorld_, normal1),
                       "default value for zWorld should be "

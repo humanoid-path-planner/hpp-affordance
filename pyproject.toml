@@ -3,13 +3,13 @@ build-backend = "cmeel.build"
 requires = [
   "cmeel-boost ~= 1.83.0",
   "cmeel[build]",
-  "hpp-fcl[build]"
+  "coal[build]"
 ]
 
 [project]
 dependencies = [
   "cmeel-boost ~= 1.83.0",
-  "hpp-fcl"
+  "coal"
 ]
 description = "Implementation to Extract Whole-Body Affordances for Mutli-Contact Planning."
 license = "BSD-2-Clause"

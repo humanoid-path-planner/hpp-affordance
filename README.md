@@ -39,8 +39,8 @@ This library is part of the software Humanoid Path Planner [(link)](http://proje
 
 To install HPP - AFFORDANCE, you will need to install one other package of the Humanoid Path Planner software with its respective dependecies. Please see the instructions below for the full installation of HPP - AFFORDANCE:
 
-  1. Install HPP - FCL
-	- see https://github.com/humanoid-path-planner/hpp-fcl
+  1. Install coal
+	- see https://github.com/coal-library/coal
 
   2. Install Eigen 3
 	- see http://eigen.tuxfamily.org/

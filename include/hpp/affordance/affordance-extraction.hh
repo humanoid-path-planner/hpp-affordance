@@ -26,9 +26,9 @@ namespace hpp {
 namespace affordance {
 
 /// Helper struct that saves the global position of the triangle
-/// vertices of a fcl::Triangle.
+/// vertices of a coal::Triangle.
 struct TrianglePoints {
-  fcl::Vec3f p1, p2, p3;
+  coal::Vec3f p1, p2, p3;
 };
 /// Helper class to save triangle information.
 struct Triangle {
@@ -60,10 +60,10 @@ struct Triangle {
   /// The area of a triangle.
   double area;
   /// The normal vector of a triangle.
-  fcl::Vec3f normal;
+  coal::Vec3f normal;
 };
 
-// helper function to extract mesh model of an fcl::collisionObstacle
+// helper function to extract mesh model of an coal::collisionObstacle
 BVHModelOBConst_Ptr_t GetModel(FclConstCollisionObjectPtr_t object);
 
 /// \addtogroup affordance
@@ -71,7 +71,7 @@ BVHModelOBConst_Ptr_t GetModel(FclConstCollisionObjectPtr_t object);
 
 /// Class that saves a reference collision object and indices to
 /// those of its mesh triangles that form one affordance object.
-/// This information will later be used to create fcl::collisionObjects
+/// This information will later be used to create coal::collisionObjects
 /// for each individual affordance.
 class Affordance {
  public:
@@ -79,8 +79,8 @@ class Affordance {
   /// Constructor for an Affordance object
   ///
   /// \param idxVec vector of triangle indices corresponding to
-  ///        the mesh model within the reference fcl::collisionObject
-  /// \param colObj reference to pointer to fcl::collisionObject
+  ///        the mesh model within the reference coal::collisionObject
+  /// \param colObj reference to pointer to coal::collisionObject
   ///        containing the found affordance objects.
   Affordance(const std::vector<unsigned int>& idxVec,
              FclConstCollisionObjectPtr_t colObj)
@@ -123,7 +123,7 @@ class SemanticsData {
 ///        step maximum one triangle is added to the vector.
 /// \param refOp operation that determines which affordance type the
 /// 			 triangles will be tested for.
-/// \param allTris all triangles of a given fcl::collisionObject mesh.
+/// \param allTris all triangles of a given coal::collisionObject mesh.
 ///				 This parameter is only used as to verify global
 ///(affordance type)
 /// 			 and local (neighbouring triangles) requirements, and is
@@ -158,9 +158,9 @@ void searchLinkedTriangles(std::vector<unsigned int>& listPotential,
                            const unsigned int& refTriIdx, double& area);
 
 /// Free function that extracts all affordances (of all types) from a given
-/// fcl::collisionObject.
+/// coal::collisionObject.
 ///
-/// \param colObj reference to a fcl::collisionObject pointer the triangles
+/// \param colObj reference to a coal::collisionObject pointer the triangles
 ///				 of which will be searched for affordance
 /// objects.
 /// \param opVec vector of operation objects that determine which requirements
@@ -172,14 +172,14 @@ SemanticsDataPtr_t affordanceAnalysis(FclConstCollisionObjectPtr_t colObj,
                                       const OperationBases_t& opVec);
 
 /// Free function that, given a semanticsData pointer, creates one
-/// fcl::collisionObject for every Affordance object.
+/// coal::collisionObject for every Affordance object.
 ///
 /// \param sData reference to all found Affordance objects.
 std::vector<CollisionObjects_t> getAffordanceObjects(
     const SemanticsDataPtr_t& sData);
 
 /// Free function that, given a semanticsData pointer, creates one
-/// fcl::collisionObject for every Affordance object.
+/// coal::collisionObject for every Affordance object.
 /// The object are reduced of \param reduceSize : each vertice are moved toward
 /// the center of this value
 ///

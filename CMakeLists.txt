@@ -59,7 +59,7 @@ compute_project_args(PROJECT_ARGS LANGUAGES CXX)
 project(${PROJECT_NAME} ${PROJECT_ARGS})
 
 add_project_dependency(Eigen3)
-add_project_dependency(hpp-fcl)
+add_project_dependency(coal)
 
 set(${PROJECT_NAME}_HEADERS
     include/hpp/affordance/fwd.hh
@@ -73,7 +73,7 @@ add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_SOURCES}
 target_include_directories(${PROJECT_NAME} SYSTEM PUBLIC ${EIGEN3_INCLUDE_DIR})
 target_include_directories(
   ${PROJECT_NAME} PUBLIC $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
-target_link_libraries(${PROJECT_NAME} hpp-fcl::hpp-fcl)
+target_link_libraries(${PROJECT_NAME} coal::coal)
 
 install(
   TARGETS ${PROJECT_NAME}
