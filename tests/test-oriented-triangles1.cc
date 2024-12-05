@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_CASE(oriented_triangles1) {
 
     R = Eigen::AngleAxisd(3.1416 * double(5 * i) / 180.0, axis);
 
-    coal::Transform3f pose(R, T);
+    coal::Transform3s pose(R, T);
 
     model->beginModel();
     model->addSubModel(vertices, triangles);

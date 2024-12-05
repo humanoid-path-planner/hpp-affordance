@@ -59,7 +59,7 @@ BOOST_AUTO_TEST_CASE(one_triangle2) {
   R = quat.matrix();
   coal::Vec3f T(0, 0, 0);
 
-  coal::Transform3f pose(R, T);
+  coal::Transform3s pose(R, T);
 
   model->beginModel();
   model->addSubModel(vertices, triangles);
