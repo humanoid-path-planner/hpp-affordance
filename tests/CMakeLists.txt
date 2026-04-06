@@ -13,10 +13,15 @@
 # details. You should have received a copy of the GNU Lesser General Public
 # License along with hpp-affordance  If not, see <http://www.gnu.org/licenses/>.
 
-set(${PROJECT_NAME}_TESTS operations one-triangle1 one-triangle2
-                          oriented-triangles1 oriented-triangles2)
+set(${PROJECT_NAME}_TESTS
+    operations
+    one-triangle1
+    one-triangle2
+    oriented-triangles1
+    oriented-triangles2
+)
 
 foreach(test ${${PROJECT_NAME}_TESTS})
-  add_unit_test(${test} "test-${test}.cc")
-  target_link_libraries(${test} ${PROJECT_NAME})
+    add_unit_test(${test} "test-${test}.cc")
+    target_link_libraries(${test} ${PROJECT_NAME})
 endforeach(test)
