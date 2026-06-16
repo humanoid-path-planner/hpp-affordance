@@ -1,13 +1,19 @@
 <?xml version='1.0'?>
-<package format='2'>
-    <name>hpp-affordance</name>
-    <version>8.0.0</version>
-    <description>Extract Whole-Body Affordances for Multi-Contact Planning</description>
+<package format='3'>
+  <name>hpp_affordance</name>
+  <version>8.0.0</version>
+  <description>Extract Whole-Body Affordances for Multi-Contact Planning</description>
+  <author>Anna Seppala</author>
+  <maintainer email='guilhem.saurel@laas.fr'>Guilhem Saurel</maintainer>
+  <license>BSD-2-Clause</license>
 
-    <maintainer email='guilhem.saurel@laas.fr'>Guilhem Saurel</maintainer>
-    <license>BSD</license>
+  <depend>coal</depend>
+  <depend>eigen</depend>
 
-    <author>Anna Seppala</author>
+  <buildtool_depend>cmake</buildtool_depend>
+  <build_depend>jrl_cmakemodules</build_depend>
 
-    <buildtool_depend>catkin</buildtool_depend>
+  <export>
+    <build_type>cmake</build_type>
+  </export>
 </package>
