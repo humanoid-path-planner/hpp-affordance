@@ -52,7 +52,7 @@ void searchLinkedTriangles(std::vector<unsigned int>& listPotential,
     if (it == searchableTris.end()) {
       continue;
     }
-    std::vector<coal::Vec3f> refPoints;
+    std::vector<coal::Vec3s> refPoints;
     refPoints.push_back(refTri.points.p1);
     refPoints.push_back(refTri.points.p2);
     refPoints.push_back(refTri.points.p3);
@@ -157,37 +157,37 @@ Eigen::Matrix3d GetRotationMatrix(const Eigen::Vector3d& from,
   return quat.toRotationMatrix();
 }
 
-Eigen::Matrix3d GetRotationMatrix(const std::vector<coal::Vec3f>& points) {
+Eigen::Matrix3d GetRotationMatrix(const std::vector<coal::Vec3s>& points) {
   assert(points.size() > 2);
-  coal::Vec3f z(0., 0., 1.);
-  coal::Vec3f normal = (points[1] - points[0]).cross(points[2] - points[0]);
+  coal::Vec3s z(0., 0., 1.);
+  coal::Vec3s normal = (points[1] - points[0]).cross(points[2] - points[0]);
   return GetRotationMatrix(normal, z);
 }
 
-typedef coal::Vec3f Point;
+typedef coal::Vec3s Point;
 typedef std::vector<Point> T_Point;
 typedef T_Point::const_iterator CIT_Point;
 
-std::vector<coal::Vec3f> projectPoints(const Eigen::Matrix3d& project,
-                                       const std::vector<coal::Vec3f>& points) {
-  std::vector<coal::Vec3f> res;
+std::vector<coal::Vec3s> projectPoints(const Eigen::Matrix3d& project,
+                                       const std::vector<coal::Vec3s>& points) {
+  std::vector<coal::Vec3s> res;
   for (CIT_Point cit = points.begin(); cit != points.end(); ++cit)
     res.push_back(project * (*cit));
   return res;
 }
 
-coal::Vec3f computeCentroid(const std::vector<coal::Vec3f>& points) {
-  coal::Vec3f acc(0., 0., 0.);
+coal::Vec3s computeCentroid(const std::vector<coal::Vec3s>& points) {
+  coal::Vec3s acc(0., 0., 0.);
   for (CIT_Point cit = points.begin(); cit != points.end(); ++cit)
     acc += (*cit);
   return acc / points.size();
 }
 
-std::vector<coal::Vec3f> translatePoints(const std::vector<coal::Vec3f>& points,
+std::vector<coal::Vec3s> translatePoints(const std::vector<coal::Vec3s>& points,
                                          const double reduceSize) {
-  coal::Vec3f centroid = computeCentroid(points);
-  coal::Vec3f dir;
-  std::vector<coal::Vec3f> res;
+  coal::Vec3s centroid = computeCentroid(points);
+  coal::Vec3s dir;
+  std::vector<coal::Vec3s> res;
   for (CIT_Point cit = points.begin(); cit != points.end(); ++cit) {
     dir = centroid - (*cit);
     dir.normalize();
@@ -197,7 +197,7 @@ std::vector<coal::Vec3f> translatePoints(const std::vector<coal::Vec3f>& points,
 }
 
 void createAffordanceModel(hpp::affordance::AffordancePtr_t affPtr,
-                           const std::vector<coal::Vec3f>& vertices,
+                           const std::vector<coal::Vec3s>& vertices,
                            const std::vector<coal::Triangle>& triangles,
                            const unsigned int affIdx,
                            std::vector<CollisionObjects_t>& affObjs) {
@@ -216,7 +216,7 @@ void createAffordanceModel(hpp::affordance::AffordancePtr_t affPtr,
 void addTriangles(hpp::affordance::AffordancePtr_t affPtr,
                   BVHModelOBConst_Ptr_t model,
                   std::vector<std::size_t>& triIndices,
-                  const unsigned int triIdx, std::vector<coal::Vec3f>& vertices,
+                  const unsigned int triIdx, std::vector<coal::Vec3s>& vertices,
                   std::vector<coal::Triangle>& triangles) {
   // give triangles of new object new vertex indices (start from 0
   // and go up to 3*nbTris - 1 [all tris have 3 unique indices])
@@ -252,7 +252,7 @@ std::vector<CollisionObjects_t> getAffordanceObjects(
     // this corresponds to number of objects to be created for specific aff type
     long unsigned int len = sData->affordances_[affIdx].size();
     for (unsigned int idx = 0; idx < len; idx++) {
-      std::vector<coal::Vec3f> vertices;
+      std::vector<coal::Vec3s> vertices;
       std::vector<coal::Triangle> triangles;
       std::vector<std::size_t> triIndices;
       hpp::affordance::AffordancePtr_t affPtr =
@@ -284,7 +284,7 @@ std::vector<CollisionObjects_t> getReducedAffordanceObjects(
     // this corresponds to number of objects to be created for specific aff type
     long unsigned int len = sData->affordances_[affIdx].size();
     for (unsigned int idx = 0; idx < len; idx++) {
-      std::vector<coal::Vec3f> vertices;
+      std::vector<coal::Vec3s> vertices;
       std::vector<coal::Triangle> triangles;
       std::vector<std::size_t> triIndices;
       hpp::affordance::AffordancePtr_t affPtr =
@@ -304,12 +304,12 @@ std::vector<CollisionObjects_t> getReducedAffordanceObjects(
         //  another vector for correspondance of index first getTransformation
         //  matrix to project triangles in a 2d plane
         Eigen::Matrix3d project = GetRotationMatrix(vertices);
-        std::vector<coal::Vec3f> projectedVertices =
+        std::vector<coal::Vec3s> projectedVertices =
             projectPoints(project, vertices);
 
         // now translate each point by the reducesize factor in the direction
         // towards the centroid
-        std::vector<coal::Vec3f> translatedVertices =
+        std::vector<coal::Vec3s> translatedVertices =
             translatePoints(projectedVertices, reduceSizes[affIdx]);
         vertices = projectPoints(project.transpose(), translatedVertices);
       }
