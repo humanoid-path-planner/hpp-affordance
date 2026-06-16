@@ -38,14 +38,14 @@ BOOST_AUTO_TEST_CASE(oriented_triangles2) {
   operations.push_back(support);
   operations.push_back(lean);
 
-  std::vector<coal::Vec3f> vertices;
+  std::vector<coal::Vec3s> vertices;
   std::vector<coal::Triangle> triangles;
 
   typedef coal::BVHModel<coal::OBBRSS> Model;
 
-  coal::Vec3f vert1(-1, 0, 0);
-  coal::Vec3f vert2(1, 0, 1);
-  coal::Vec3f vert3(1, 0, -1);
+  coal::Vec3s vert1(-1, 0, 0);
+  coal::Vec3s vert2(1, 0, 1);
+  coal::Vec3s vert3(1, 0, -1);
   vertices.push_back(vert1);
   vertices.push_back(vert2);
   vertices.push_back(vert3);
@@ -53,9 +53,9 @@ BOOST_AUTO_TEST_CASE(oriented_triangles2) {
   int size_ = 7;
   int affFound = 0;
   int affNotFound = 0;
-  coal::Vec3f T(0, 0, 0);
-  coal::Vec3f axis(1, 0, 0);
-  coal::Matrix3f R;
+  coal::Vec3s T(0, 0, 0);
+  coal::Vec3s axis(1, 0, 0);
+  coal::Matrix3s R;
 
   for (int i = 0; i < size_; ++i) {
     coal::shared_ptr<Model> model(new Model());

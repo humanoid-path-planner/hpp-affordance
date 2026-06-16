@@ -63,10 +63,10 @@ class OperationBase {
   /// triangle normal fullfils the requirement of a child class. If yes,
   /// the tested triangle forms part of a potential affordance.
   /// \param normal Normal vector of the tested triangle.
-  virtual bool requirement(const coal::Vec3f& normal) = 0;
+  virtual bool requirement(const coal::Vec3s& normal) = 0;
   /// The orientation of the world z axis. Needed to find potential affordance
   /// objects.
-  const coal::Vec3f zWorld_;
+  const coal::Vec3s zWorld_;
   /// The error margin within which the requirement function must be fullfilled.
   const double margin_;
   /// The margin for the deviation of the normal of neighbouring triangles.
@@ -98,7 +98,7 @@ class SupportOperation : public OperationBase {
   /// The implementation of the requirement function for Support affordances
   /// overrides the virtual function in class OperationBase.
   /// \param nromal Normal vector of the tested triangle.
-  bool requirement(const coal::Vec3f& normal) {
+  bool requirement(const coal::Vec3s& normal) {
     return ((zWorld_ - normal).squaredNorm() < margin_);
   }
 };  // class SupportOperation
@@ -122,7 +122,7 @@ class LeanOperation : public OperationBase {
   /// The implementation of the requirement function for Lean affordances
   /// overrides the virtual function in class OperationBase.
   /// \param nromal Normal vector of the tested triangle.
-  bool requirement(const coal::Vec3f& normal) {
+  bool requirement(const coal::Vec3s& normal) {
     return (fabs(normal.dot(zWorld_)) < margin_);
   }
 };  // class LeanOperation
@@ -144,17 +144,17 @@ class Support45Operation : public OperationBase {
                               const double minArea = 0.05,
                               const char* affordanceName = "Support45")
       : OperationBase(margin, 0.05, minArea, affordanceName),
-        axis45_(coal::Vec3f(1. / sqrt(2.), 0, 1. / sqrt(2.))) {}
+        axis45_(coal::Vec3s(1. / sqrt(2.), 0, 1. / sqrt(2.))) {}
 
  private:
-  const coal::Vec3f axis45_;
+  const coal::Vec3s axis45_;
 
   /// The implementation of the requirement function for Support45 affordances
   /// overrides the virtual function in class OperationBase.
   /// Test if the normal in oriented with 45° up +- margin
   /// \param nromal Normal vector of the tested triangle.
-  bool requirement(const coal::Vec3f& normal) {
-    coal::Vec3f projectedNormal(0, 0, normal[2]);  // project normal in x,z plan
+  bool requirement(const coal::Vec3s& normal) {
+    coal::Vec3s projectedNormal(0, 0, normal[2]);  // project normal in x,z plan
     projectedNormal[0] = sqrt(normal[0] * normal[0] + normal[1] * normal[1]);
     return ((axis45_ - projectedNormal).squaredNorm() < margin_);
   }

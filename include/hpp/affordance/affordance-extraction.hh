@@ -28,7 +28,7 @@ namespace affordance {
 /// Helper struct that saves the global position of the triangle
 /// vertices of a coal::Triangle.
 struct TrianglePoints {
-  coal::Vec3f p1, p2, p3;
+  coal::Vec3s p1, p2, p3;
 };
 /// Helper class to save triangle information.
 struct Triangle {
@@ -60,7 +60,7 @@ struct Triangle {
   /// The area of a triangle.
   double area;
   /// The normal vector of a triangle.
-  coal::Vec3f normal;
+  coal::Vec3s normal;
 };
 
 // helper function to extract mesh model of an coal::collisionObstacle
