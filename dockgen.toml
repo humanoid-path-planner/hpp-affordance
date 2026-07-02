@@ -2,5 +2,5 @@
 url = "github:coal-library"
 
 [hpp-affordance]
-url = "."
 src_deps = ["coal"]
+url = "."
