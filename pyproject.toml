@@ -1,20 +1,23 @@
 [build-system]
 build-backend = "cmeel.build"
 requires = [
-  "cmeel-boost ~= 1.83.0",
+  "cmeel-boost ~= 1.90.0",
   "cmeel[build]",
   "coal[build]"
 ]
 
 [project]
 dependencies = [
-  "cmeel-boost ~= 1.83.0",
+  "cmeel-boost ~= 1.90.0",
   "coal"
 ]
 description = "Implementation to Extract Whole-Body Affordances for Mutli-Contact Planning."
 license = "BSD-2-Clause"
 name = "hpp-affordance"
 version = "9.0.0"
+
+[tool.cmeel]
+has-sitelib = false
 
 [tool.ruff]
 extend-exclude = ["cmake"]
