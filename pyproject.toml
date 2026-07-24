@@ -14,7 +14,7 @@ dependencies = [
 description = "Implementation to Extract Whole-Body Affordances for Mutli-Contact Planning."
 license = "BSD-2-Clause"
 name = "hpp-affordance"
-version = "9.0.0"
+version = "9.0.2"
 
 [tool.cmeel]
 has-sitelib = false
